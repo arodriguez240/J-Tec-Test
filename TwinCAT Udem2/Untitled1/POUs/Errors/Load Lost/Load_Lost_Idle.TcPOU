@@ -1,0 +1,129 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.9">
+  <POU Name="Load_Lost_Idle" Id="{c5ca50de-a2d7-49de-8358-25a9dac3fb88}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM Load_Lost_Idle
+VAR
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[IF Shuttle.ReturnToIdleTrigger.Q THEN
+	
+	IF Shuttle.GrabberLoaded[1] OR Shuttle.GrabberLoadInGrabRange[1] THEN
+		
+		Shuttle.GrabberWasLoadedIdle[1]		:= TRUE;
+	
+	ELSE
+		
+		Shuttle.GrabberWasLoadedIdle[1] 	:= FALSE;
+	
+	END_IF
+	
+	IF Shuttle.GrabberLoaded[2] OR Shuttle.GrabberLoadInGrabRange[2] THEN
+		
+		Shuttle.GrabberWasLoadedIdle[2]		:= TRUE;
+	
+	ELSE
+		
+		Shuttle.GrabberWasLoadedIdle[2] 	:= FALSE;
+	
+	END_IF
+
+END_IF
+
+IF Shuttle.ReturnToIdleTrigger.Q THEN
+
+	IF (Shuttle.GrabberWasLoadedIdle[1] AND Shuttle.GrabberLoaded[1] = FALSE) OR 
+		(Shuttle.GrabberWasLoadedIdle[2] AND Shuttle.GrabberLoaded[2] = FALSE) THEN
+		
+		Shuttle.Grabber_Lost_Load			:= TRUE;
+	
+	ELSE
+		
+		Shuttle.Grabber_Lost_Load			:= FALSE;
+	
+	END_IF
+
+END_IF
+
+IF Otto.EnableAttachment THEN
+	
+	IF Shuttle.ActiveBays[1] = FALSE THEN
+		
+		IF Shuttle.GrabberWasLoadedIdle[1] AND Shuttle.GrabberLoaded[1] = FALSE THEN
+			
+			Shuttle.Grabber_Lost_Load			:= TRUE;
+		
+		END_IF
+	
+	END_IF
+	
+	IF Shuttle.ActiveBays[2] = FALSE THEN
+		
+		IF Shuttle.GrabberWasLoadedIdle[2] AND Shuttle.GrabberLoaded[2] = FALSE THEN
+			
+			Shuttle.Grabber_Lost_Load			:= TRUE;
+		
+		END_IF
+	
+	END_IF
+
+END_IF
+
+IF Shuttle.Reset THEN
+	
+	Shuttle.Grabber_Lost_Load	:= FALSE;
+
+END_IF]]></ST>
+    </Implementation>
+    <LineIds Name="Load_Lost_Idle">
+      <LineId Id="5" Count="1" />
+      <LineId Id="9" Count="1" />
+      <LineId Id="67" Count="3" />
+      <LineId Id="12" Count="0" />
+      <LineId Id="26" Count="0" />
+      <LineId Id="11" Count="0" />
+      <LineId Id="14" Count="0" />
+      <LineId Id="16" Count="1" />
+      <LineId Id="63" Count="3" />
+      <LineId Id="18" Count="0" />
+      <LineId Id="30" Count="0" />
+      <LineId Id="15" Count="0" />
+      <LineId Id="8" Count="0" />
+      <LineId Id="7" Count="0" />
+      <LineId Id="36" Count="0" />
+      <LineId Id="22" Count="0" />
+      <LineId Id="55" Count="0" />
+      <LineId Id="21" Count="0" />
+      <LineId Id="50" Count="0" />
+      <LineId Id="31" Count="0" />
+      <LineId Id="34" Count="1" />
+      <LineId Id="43" Count="1" />
+      <LineId Id="46" Count="0" />
+      <LineId Id="45" Count="0" />
+      <LineId Id="32" Count="0" />
+      <LineId Id="59" Count="0" />
+      <LineId Id="58" Count="0" />
+      <LineId Id="72" Count="0" />
+      <LineId Id="71" Count="0" />
+      <LineId Id="73" Count="0" />
+      <LineId Id="76" Count="1" />
+      <LineId Id="79" Count="0" />
+      <LineId Id="81" Count="0" />
+      <LineId Id="83" Count="1" />
+      <LineId Id="82" Count="0" />
+      <LineId Id="80" Count="0" />
+      <LineId Id="78" Count="0" />
+      <LineId Id="85" Count="0" />
+      <LineId Id="87" Count="7" />
+      <LineId Id="86" Count="0" />
+      <LineId Id="75" Count="0" />
+      <LineId Id="74" Count="0" />
+      <LineId Id="98" Count="0" />
+      <LineId Id="97" Count="0" />
+      <LineId Id="99" Count="0" />
+      <LineId Id="102" Count="0" />
+      <LineId Id="101" Count="0" />
+      <LineId Id="100" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

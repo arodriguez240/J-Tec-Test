@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.9">
+  <POU Name="Misalignments" Id="{c7c59819-1df4-4575-ba0e-0341bc2d34fb}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM Misalignments
+VAR
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[//IF (Otto.PickupLocation1 OR Otto.PickupLocation2 OR Otto.PickupLocation3 OR
+//	Otto.DropoffLocation1 OR Otto.DropoffLocation2 OR Otto.DropoffLocation3) AND Shuttle.Present = FALSE THEN
+	
+//	Supervisor.Misalignment := TRUE;
+	
+//ELSE
+	
+//	Supervisor.Misalignment := FALSE;
+
+//END_IF
+
+Supervisor.Misalignment := FALSE;]]></ST>
+    </Implementation>
+    <LineIds Name="Misalignments">
+      <LineId Id="5" Count="0" />
+      <LineId Id="61" Count="0" />
+      <LineId Id="6" Count="0" />
+      <LineId Id="9" Count="0" />
+      <LineId Id="57" Count="0" />
+      <LineId Id="16" Count="1" />
+      <LineId Id="19" Count="0" />
+      <LineId Id="14" Count="0" />
+      <LineId Id="7" Count="0" />
+      <LineId Id="66" Count="0" />
+      <LineId Id="65" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

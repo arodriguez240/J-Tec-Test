@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.9">
+  <POU Name="Load_Mismatch_Active" Id="{39ae6742-6826-40b8-b67f-5ffed19e33b9}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM Load_Mismatch_Active
+VAR
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[Stationary.LoadMismatchCheckTrigger(CLK:= Stationary.LoadMismatchCheck, Q=> );
+
+IF Stationary.LoadMismatchCheckTrigger.Q THEN
+	
+	//Told to pickup but have a load
+	IF Otto.PickupLocation1 AND Stationary.LoadPresent[1] = FALSE THEN 
+		
+		Stationary.LoadMismatchActive	:= TRUE;
+		
+	ELSIF Otto.PickupLocation2 AND Stationary.LoadPresent[2] = FALSE THEN  
+	
+		Stationary.LoadMismatchActive	:= TRUE;
+		
+	ELSIF Otto.PickupLocation3 AND (Stationary.LoadPresent[1] = FALSE OR Stationary.LoadPresent[2] = FALSE) THEN 
+		
+		Stationary.LoadMismatchActive	:= TRUE;
+		
+	//Told to dropoff but are empty
+	ELSIF Otto.DropoffLocation1 AND Stationary.LoadPresent[1] THEN 
+		
+		Stationary.LoadMismatchActive	:= TRUE;
+		
+	ELSIF Otto.DropoffLocation2 AND Stationary.LoadPresent[2] THEN  
+	
+		Stationary.LoadMismatchActive	:= TRUE;
+		
+	ELSIF Otto.DropoffLocation3 AND (Stationary.LoadPresent[1] OR Stationary.LoadPresent[2]) THEN 
+		
+		Stationary.LoadMismatchActive	:= TRUE;
+		
+	ELSE
+		
+		Stationary.LoadMismatchActive	:= FALSE;
+		
+	END_IF
+	
+END_IF]]></ST>
+    </Implementation>
+    <LineIds Name="Load_Mismatch_Active">
+      <LineId Id="33" Count="1" />
+      <LineId Id="5" Count="0" />
+      <LineId Id="8" Count="0" />
+      <LineId Id="35" Count="3" />
+      <LineId Id="41" Count="2" />
+      <LineId Id="46" Count="3" />
+      <LineId Id="52" Count="4" />
+      <LineId Id="59" Count="3" />
+      <LineId Id="65" Count="3" />
+      <LineId Id="71" Count="3" />
+      <LineId Id="78" Count="1" />
+      <LineId Id="21" Count="0" />
+      <LineId Id="10" Count="0" />
+      <LineId Id="9" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

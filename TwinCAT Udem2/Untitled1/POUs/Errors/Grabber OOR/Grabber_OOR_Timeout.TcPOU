@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.9">
+  <POU Name="Grabber_OOR_Timeout" Id="{b8f0b067-0d52-4a70-b1fc-b9e3606b9621}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM Grabber_OOR_Timeout
+VAR
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[Timers.GrabberOOR(IN:= Shuttle.Grabber_OOR_Timeout, PT:= T#5S, Q=> , ET=> );
+
+IF Shuttle.ExtensionComplete THEN
+
+	IF Otto.PickupLocation3 AND 
+		(Shuttle.GrabberLoadNotInGrabRange[1] OR Shuttle.GrabberLoadNotInGrabRange[2]) THEN 	
+		
+		Shuttle.Grabber_OOR_Timeout		:= TRUE;
+		
+	ELSE
+		
+		Shuttle.Grabber_OOR_Timeout		:= FALSE;
+		
+	
+	END_IF
+	
+ELSE
+	
+	Shuttle.Grabber_OOR_Timeout		:= FALSE;
+
+END_IF
+
+IF Timers.GrabberOOR.Q THEN
+	
+	Shuttle.Grabber_OOR		:= TRUE;
+
+END_IF]]></ST>
+    </Implementation>
+    <LineIds Name="Grabber_OOR_Timeout">
+      <LineId Id="13" Count="0" />
+      <LineId Id="15" Count="0" />
+      <LineId Id="10" Count="0" />
+      <LineId Id="12" Count="0" />
+      <LineId Id="6" Count="1" />
+      <LineId Id="5" Count="0" />
+      <LineId Id="14" Count="0" />
+      <LineId Id="16" Count="2" />
+      <LineId Id="21" Count="1" />
+      <LineId Id="20" Count="0" />
+      <LineId Id="19" Count="0" />
+      <LineId Id="24" Count="2" />
+      <LineId Id="29" Count="0" />
+      <LineId Id="28" Count="0" />
+      <LineId Id="27" Count="0" />
+      <LineId Id="31" Count="0" />
+      <LineId Id="30" Count="0" />
+      <LineId Id="32" Count="0" />
+      <LineId Id="35" Count="0" />
+      <LineId Id="38" Count="0" />
+      <LineId Id="33" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

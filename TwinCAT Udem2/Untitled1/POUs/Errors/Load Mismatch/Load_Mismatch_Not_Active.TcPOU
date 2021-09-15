@@ -1,0 +1,96 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.9">
+  <POU Name="Load_Mismatch_Not_Active" Id="{58cc65cb-53dc-4fc7-b598-e6175c22cc4e}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM Load_Mismatch_Not_Active
+VAR
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[IF Stationary.LoadMismatchCheckTrigger.Q THEN
+	
+	//Told to pickup but have a load
+	IF Otto.PickupLocation1 THEN
+
+		IF Stationary.LoadPresent[2] AND Shuttle.GrabberLoaded[2] THEN 
+		
+			Stationary.LoadMismatchNotActive	:= TRUE;
+		
+		ELSE 
+			
+			Stationary.LoadMismatchNotActive	:= FALSE;
+		
+		END_IF
+		
+	ELSIF Otto.PickupLocation2 THEN  
+	
+		IF Stationary.LoadPresent[1] AND Shuttle.GrabberLoaded[1] THEN 
+		
+			Stationary.LoadMismatchNotActive	:= TRUE;
+		
+		ELSE 
+			
+			Stationary.LoadMismatchNotActive	:= FALSE;
+		
+		END_IF
+		
+	ELSIF Otto.DropoffLocation1 AND Stationary.LoadPresent[1] THEN 
+		
+		IF Stationary.LoadPresent[2] AND Shuttle.GrabberLoaded[2] THEN 
+		
+			Stationary.LoadMismatchNotActive	:= TRUE;
+		
+		ELSE 
+			
+			Stationary.LoadMismatchNotActive	:= FALSE;
+		
+		END_IF
+		
+	ELSIF Otto.DropoffLocation2 AND Stationary.LoadPresent[2] THEN  
+	
+		IF Stationary.LoadPresent[1] AND Shuttle.GrabberLoaded[1] THEN 
+		
+			Stationary.LoadMismatchNotActive	:= TRUE;
+		
+		ELSE 
+			
+			Stationary.LoadMismatchNotActive	:= FALSE;
+		
+		END_IF
+		
+	ELSE
+		
+		Stationary.LoadMismatchNotActive	:= FALSE;
+		
+	END_IF
+	
+END_IF]]></ST>
+    </Implementation>
+    <LineIds Name="Load_Mismatch_Not_Active">
+      <LineId Id="5" Count="0" />
+      <LineId Id="8" Count="0" />
+      <LineId Id="35" Count="1" />
+      <LineId Id="87" Count="0" />
+      <LineId Id="86" Count="0" />
+      <LineId Id="37" Count="1" />
+      <LineId Id="88" Count="0" />
+      <LineId Id="90" Count="1" />
+      <LineId Id="93" Count="1" />
+      <LineId Id="92" Count="0" />
+      <LineId Id="89" Count="0" />
+      <LineId Id="42" Count="1" />
+      <LineId Id="95" Count="7" />
+      <LineId Id="46" Count="0" />
+      <LineId Id="53" Count="0" />
+      <LineId Id="55" Count="1" />
+      <LineId Id="103" Count="7" />
+      <LineId Id="59" Count="3" />
+      <LineId Id="111" Count="7" />
+      <LineId Id="65" Count="0" />
+      <LineId Id="72" Count="2" />
+      <LineId Id="78" Count="1" />
+      <LineId Id="21" Count="0" />
+      <LineId Id="10" Count="0" />
+      <LineId Id="9" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

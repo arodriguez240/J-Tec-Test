@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.9">
+  <POU Name="Manually_Loaded" Id="{932db8ef-fbfd-46e3-ae0e-2db2ee267582}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM Manually_Loaded
+VAR
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[IF Shuttle.ReturnToIdleTrigger.Q THEN
+
+	IF (Shuttle.GrabberWasLoadedIdle[1] = FALSE AND Shuttle.GrabberLoaded[1]) OR 
+		(Shuttle.GrabberWasLoadedIdle[2] = FALSE AND Shuttle.GrabberLoaded[2]) THEN
+		
+		Shuttle.Grabber_Loaded_Manually			:= TRUE;
+	
+	ELSE
+		
+		Shuttle.Grabber_Loaded_Manually			:= FALSE;
+	
+	END_IF
+
+END_IF]]></ST>
+    </Implementation>
+    <LineIds Name="Manually_Loaded">
+      <LineId Id="30" Count="12" />
+      <LineId Id="5" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>
