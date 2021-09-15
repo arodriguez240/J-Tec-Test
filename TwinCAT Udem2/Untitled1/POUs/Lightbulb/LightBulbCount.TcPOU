@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.9">
+  <POU Name="LightBulbCount" Id="{71f65e83-10ab-48e4-a72b-032105444cab}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM LightBulbCount
+VAR
+	ResetBTN: BOOL;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[(*Counter TURN ON 5 times until LED can actually turn on*)
+
+(*CountUp.Count (CU := LightBulb.LightSwitch, RESET := ResetBTN, PV := 5, Q=>, CV=> );
+
+IF LightBulb.LightSwitch THEN
+	LightBulb.YellowLED	:=	CountUp.Count.Q;
+END_IF
+
+*)]]></ST>
+    </Implementation>
+    <LineIds Name="LightBulbCount">
+      <LineId Id="6" Count="0" />
+      <LineId Id="19" Count="0" />
+      <LineId Id="5" Count="0" />
+      <LineId Id="9" Count="1" />
+      <LineId Id="12" Count="0" />
+      <LineId Id="7" Count="0" />
+      <LineId Id="18" Count="0" />
+      <LineId Id="17" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

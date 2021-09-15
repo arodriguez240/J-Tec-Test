@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.9">
+  <POU Name="IO" Id="{bf9a2bcf-91a0-40a3-a6e9-abaa1c5e0bea}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM IO
+VAR
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[
+LightBulb.StartSwitch 	:=	LightBulb.StartSignal;
+LightBulb.StopSwitch	:=	LightBulb.StopSignal;
+]]></ST>
+    </Implementation>
+    <LineIds Name="IO">
+      <LineId Id="6" Count="0" />
+      <LineId Id="5" Count="0" />
+      <LineId Id="7" Count="1" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

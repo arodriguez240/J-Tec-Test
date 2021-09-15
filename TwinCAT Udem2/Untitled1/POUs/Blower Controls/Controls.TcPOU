@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.9">
+  <POU Name="Controls" Id="{134dc9d1-6b4a-4fde-8d27-9060ec6338ea}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM Controls
+VAR
+	MainState	:	INT;// 0 : OFF || 1 : manual Mode | 2 : AutoMode
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[
+IF Blower.OnPushBTN AND Blower.AutoPushBTN = FALSE AND Blower.AutoPushBTN = FALSE AND MainState <> 2 THEN
+	
+	MainState				:=	1;
+	
+END_IF
+
+IF Blower.OffPushBTN THEN
+	
+	Mainstate				:=	0;
+	Blower.AirBlowerPower	:=	FALSE;
+	Blower.AutoPushBTN		:=	FALSE;
+	Blower.OnPushBTN		:=	FALSE;
+	
+END_IF
+
+IF Blower.AutoPushBTN AND Blower.OffPushBTN = FALSE AND Blower.OnPushBTN = FALSE THEN
+	
+	MainState 				:=	2;
+	
+END_IF
+
+IF (Blower.OnPushBTN OR Blower.AutoPushBTN) AND Blower.OffPushBTN = FALSE  THEN
+	
+	Blower.AirBlowerPower	:=	TRUE;
+	
+END_IF ]]></ST>
+    </Implementation>
+    <LineIds Name="Controls">
+      <LineId Id="6" Count="0" />
+      <LineId Id="5" Count="0" />
+      <LineId Id="21" Count="0" />
+      <LineId Id="7" Count="0" />
+      <LineId Id="37" Count="0" />
+      <LineId Id="8" Count="0" />
+      <LineId Id="11" Count="0" />
+      <LineId Id="10" Count="0" />
+      <LineId Id="23" Count="0" />
+      <LineId Id="12" Count="0" />
+      <LineId Id="43" Count="2" />
+      <LineId Id="24" Count="0" />
+      <LineId Id="13" Count="0" />
+      <LineId Id="15" Count="0" />
+      <LineId Id="14" Count="0" />
+      <LineId Id="25" Count="0" />
+      <LineId Id="16" Count="0" />
+      <LineId Id="26" Count="0" />
+      <LineId Id="17" Count="0" />
+      <LineId Id="28" Count="0" />
+      <LineId Id="27" Count="0" />
+      <LineId Id="33" Count="0" />
+      <LineId Id="31" Count="0" />
+      <LineId Id="34" Count="0" />
+      <LineId Id="30" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

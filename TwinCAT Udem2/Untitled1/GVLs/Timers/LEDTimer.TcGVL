@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.9">
+  <GVL Name="LEDTimer" Id="{71533ef3-5567-44d6-ac89-352bfb3b71c3}">
+    <Declaration><![CDATA[{attribute 'qualified_only'}
+VAR_GLOBAL
+	On_DelayLED		:	TON;
+	Off_DelayLED	:	TOF;
+END_VAR]]></Declaration>
+  </GVL>
+</TcPlcObject>

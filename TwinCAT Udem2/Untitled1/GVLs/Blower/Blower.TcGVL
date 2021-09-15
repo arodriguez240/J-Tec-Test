@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.9">
+  <GVL Name="Blower" Id="{31789b34-3a4c-4198-a99b-2f232451b3ed}">
+    <Declaration><![CDATA[{attribute 'qualified_only'}
+VAR_GLOBAL
+	
+	// Inputs
+	OnPushBTN		:	BOOL;
+	OffPushBTN		:	BOOL;
+	AutoPushBTN		:	BOOL;
+	
+	// Outputs
+	AirBlowerPower	:	BOOL;
+	BlowerStatus	:	ARRAY[1..2] OF BOOL;
+	
+END_VAR]]></Declaration>
+  </GVL>
+</TcPlcObject>

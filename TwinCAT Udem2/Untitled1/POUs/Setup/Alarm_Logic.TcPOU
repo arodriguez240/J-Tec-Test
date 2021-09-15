@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.9">
+  <POU Name="Alarm_Logic" Id="{4c516ebb-c9a1-4afb-b6ad-18be282a697b}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM Alarm_Logic
+VAR
+	
+	RedStack		:	Blink;
+	YellowStack		:	Blink;
+	BlueStack		:	Blink;
+	YellowLED		:	Blink;
+	
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[
+IF Pump.LLSwicth AND Pump.HHSwitch = FALSE THEN
+
+	RedStack(Enable := TRUE, Period := T#125MS ,Q=> Pump.RedLED);
+	YellowStack(Enable := TRUE, Period := T#125MS ,Q=> Pump.YellowLED);	
+
+END_IF]]></ST>
+    </Implementation>
+    <LineIds Name="Alarm_Logic">
+      <LineId Id="20" Count="5" />
+      <LineId Id="15" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

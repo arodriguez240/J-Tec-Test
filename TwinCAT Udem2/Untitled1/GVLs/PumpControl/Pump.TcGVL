@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.9">
+  <GVL Name="Pump" Id="{7b84e801-325e-423b-a5ef-e48e6b8e0efb}">
+    <Declaration><![CDATA[{attribute 'qualified_only'}
+VAR_GLOBAL
+
+		HHSwitch	:	BOOL;
+		HSwitch		:	BOOL;
+		
+		LLSwicth	:	BOOL;
+		LSwitch		:	BOOL;
+		
+		Pump		:	BOOL;
+		Valve		:	BOOL;
+		
+		YellowLED	:	BOOL;
+		RedLED		:	BOOL;
+		BlueLED		:	BOOL;
+		
+END_VAR]]></Declaration>
+  </GVL>
+</TcPlcObject>

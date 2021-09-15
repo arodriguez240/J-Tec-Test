@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.9">
+  <GVL Name="CountUp" Id="{d66f1d73-a710-4ebc-927f-e3685582c1c1}">
+    <Declaration><![CDATA[{attribute 'qualified_only'}
+VAR_GLOBAL
+	Count	:	CTU;
+END_VAR]]></Declaration>
+  </GVL>
+</TcPlcObject>

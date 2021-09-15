@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.9">
+  <POU Name="LightBulbTimer" Id="{52afcbb2-5cdb-4618-b2b1-8b2f14a911b6}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM LightBulbTimer
+VAR
+	ONS :	BOOL;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[IO();
+(*Delays the LED for 10 seconds to turn on *)
+//LEDTimer.On_DelayLED  (IN	:=	LightBulb.StartSignal = TRUE,  PT	:=	T#10S, Q=> , ET => );
+//LEDTimer.Off_DelayLED (IN	:=	LightBulb.StopSignal = TRUE, PT	:=	T#10S,	Q=>, ET=> );
+
+
+IF Lightbulb.StartSignal AND ONS THEN
+	
+	Lightbulb.YellowLED		:=	TRUE;
+	Lightbulb.StopSignal	:=	FALSE;
+	
+END_IF
+
+IF Lightbulb.StopSignal AND ONS = FALSE THEN
+
+	Lightbulb.YellowLED		:=	FALSE;	
+	Lightbulb.StartSignal	:=	FALSE;
+
+END_IF]]></ST>
+    </Implementation>
+    <LineIds Name="LightBulbTimer">
+      <LineId Id="14" Count="0" />
+      <LineId Id="12" Count="0" />
+      <LineId Id="11" Count="0" />
+      <LineId Id="6" Count="0" />
+      <LineId Id="24" Count="0" />
+      <LineId Id="21" Count="0" />
+      <LineId Id="88" Count="0" />
+      <LineId Id="98" Count="0" />
+      <LineId Id="96" Count="0" />
+      <LineId Id="108" Count="0" />
+      <LineId Id="99" Count="0" />
+      <LineId Id="97" Count="0" />
+      <LineId Id="101" Count="0" />
+      <LineId Id="100" Count="0" />
+      <LineId Id="105" Count="0" />
+      <LineId Id="102" Count="0" />
+      <LineId Id="107" Count="0" />
+      <LineId Id="104" Count="0" />
+      <LineId Id="103" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

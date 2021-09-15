@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.9">
+  <POU Name="F_Scale" Id="{67b735c1-4990-4959-87c8-be02f5cb698e}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK F_Scale
+VAR_INPUT
+	RawData					:	LREAL;
+	
+	RawDataLowerOffLimit	:	LREAL;
+	RawDataUpperLimit		:	LREAL;
+	
+	ScaleDataLowerOffLimit	:	LREAL;
+	ScaleDataUpperLimit		:	LREAL;
+END_VAR
+VAR_OUTPUT
+END_VAR
+VAR
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[]]></ST>
+    </Implementation>
+    <LineIds Name="F_Scale">
+      <LineId Id="9" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>
