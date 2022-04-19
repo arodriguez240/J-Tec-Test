@@ -1,0 +1,93 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.9">
+  <POU Name="Stationary_Load_State" Id="{a29863dd-b8a9-4ae7-8a05-c4d344874b05}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM Stationary_Load_State
+VAR
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[IF Shuttle.LocationTrigger.Q THEN
+	
+	Stationary.LoadMismatchCheck	:= TRUE;
+	
+	IF Shuttle.Present THEN
+		
+		Stationary.IsLargeOrMedium	:= TRUE;
+		Stationary.IsSmall			:= FALSE;
+		
+		IF Shuttle.LoadPresentCenter THEN
+			
+			Stationary.LoadPresent[1]	:= TRUE;
+			Stationary.LoadPresent[2]	:= TRUE;
+		
+		ELSE
+			
+			Stationary.LoadPresent[1]	:= FALSE;
+			Stationary.LoadPresent[2]	:= FALSE;
+			
+		END_IF
+	
+	ELSE
+		
+		Stationary.IsLargeOrMedium	:= FALSE;
+		Stationary.IsSmall			:= TRUE;
+	
+		IF Shuttle.LoadPresent[1] THEN
+			
+			Stationary.LoadPresent[1]	:= TRUE;
+			
+		ELSE
+			
+			Stationary.LoadPresent[1]	:= FALSE;
+		
+		END_IF
+		
+		IF Shuttle.LoadPresent[2] THEN
+			
+			Stationary.LoadPresent[2]	:= TRUE;
+			
+		ELSE
+			
+			Stationary.LoadPresent[2]	:= FALSE;
+		
+		END_IF
+		
+	END_IF
+
+END_IF]]></ST>
+    </Implementation>
+    <LineIds Name="Stationary_Load_State">
+      <LineId Id="6" Count="0" />
+      <LineId Id="67" Count="2" />
+      <LineId Id="14" Count="0" />
+      <LineId Id="26" Count="2" />
+      <LineId Id="17" Count="0" />
+      <LineId Id="19" Count="0" />
+      <LineId Id="21" Count="0" />
+      <LineId Id="23" Count="0" />
+      <LineId Id="25" Count="0" />
+      <LineId Id="24" Count="0" />
+      <LineId Id="30" Count="2" />
+      <LineId Id="34" Count="0" />
+      <LineId Id="33" Count="0" />
+      <LineId Id="22" Count="0" />
+      <LineId Id="20" Count="0" />
+      <LineId Id="35" Count="2" />
+      <LineId Id="39" Count="0" />
+      <LineId Id="38" Count="0" />
+      <LineId Id="40" Count="1" />
+      <LineId Id="43" Count="0" />
+      <LineId Id="51" Count="0" />
+      <LineId Id="48" Count="2" />
+      <LineId Id="44" Count="0" />
+      <LineId Id="42" Count="0" />
+      <LineId Id="52" Count="0" />
+      <LineId Id="54" Count="7" />
+      <LineId Id="53" Count="0" />
+      <LineId Id="62" Count="0" />
+      <LineId Id="18" Count="0" />
+      <LineId Id="11" Count="0" />
+      <LineId Id="10" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.9">
+  <POU Name="Dock_State" Id="{c2f9a6a6-1478-4500-9ce0-2bb70b8e8847}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM Dock_State
+VAR
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[IF Shuttle.LoadDistance[1] < 30000 THEN
+	
+	Shuttle.IsDocked[1]		:= TRUE;
+	Shuttle.IsNotDocked[1] 	:= FALSE;
+	
+ELSE
+	
+	Shuttle.IsDocked[1]		:= FALSE;
+	Shuttle.IsNotDocked[1] 	:= TRUE;
+
+END_IF
+
+IF Shuttle.LoadDistance[2] < 30000 THEN
+	
+	Shuttle.IsDocked[2]		:= TRUE;
+	Shuttle.IsNotDocked[2] 	:= FALSE;
+	
+ELSE
+	
+	Shuttle.IsDocked[2]		:= FALSE;
+	Shuttle.IsNotDocked[2] 	:= TRUE;
+
+END_IF
+
+IF Shuttle.IsDocked[1] AND Shuttle.IsDocked[2] THEN
+	
+	Shuttle.IsCompletelyDocked		:= TRUE;
+	Shuttle.IsNotCompletelyDocked	:= FALSE;
+
+ELSE 
+	
+	Shuttle.IsCompletelyDocked		:= FALSE;
+	Shuttle.IsNotCompletelyDocked	:= TRUE;
+
+END_IF]]></ST>
+    </Implementation>
+    <LineIds Name="Dock_State">
+      <LineId Id="5" Count="1" />
+      <LineId Id="9" Count="1" />
+      <LineId Id="14" Count="0" />
+      <LineId Id="8" Count="0" />
+      <LineId Id="11" Count="0" />
+      <LineId Id="15" Count="0" />
+      <LineId Id="13" Count="0" />
+      <LineId Id="12" Count="0" />
+      <LineId Id="7" Count="0" />
+      <LineId Id="17" Count="10" />
+      <LineId Id="16" Count="0" />
+      <LineId Id="29" Count="0" />
+      <LineId Id="28" Count="0" />
+      <LineId Id="30" Count="0" />
+      <LineId Id="33" Count="1" />
+      <LineId Id="38" Count="0" />
+      <LineId Id="32" Count="0" />
+      <LineId Id="39" Count="0" />
+      <LineId Id="43" Count="0" />
+      <LineId Id="41" Count="0" />
+      <LineId Id="40" Count="0" />
+      <LineId Id="31" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>
